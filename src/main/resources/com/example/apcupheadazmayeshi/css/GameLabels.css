@@ -1,0 +1,23 @@
+.timer{
+    -fx-font-size: 20px;
+    -fx-font-family: Arial;
+    -fx-text-fill: red;
+}
+
+.playersXP{
+    -fx-font-size: 15px;
+    -fx-font-family: Arial;
+    -fx-text-fill: red;
+}
+
+.playersHP{
+    -fx-font-size: 15px;
+    -fx-font-family: Arial;
+    -fx-text-fill: red;
+}
+
+.bossHP{
+    -fx-font-size: 15px;
+    -fx-font-family: Arial;
+    -fx-text-fill: green;
+}

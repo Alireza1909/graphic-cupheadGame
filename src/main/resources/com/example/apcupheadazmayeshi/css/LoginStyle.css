@@ -1,0 +1,18 @@
+.title{
+    -fx-font-size: 40px;
+    -fx-font-family: sans-serif;
+    -fx-text-fill: #00ff33;
+    -fx-background-color: #00ff48;
+}
+
+.root{
+    -fx-background-image: url("background.png");
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2a4d58);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}

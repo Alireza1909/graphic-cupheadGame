@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.apcupheadazmayeshi.ProfileController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+
+        <VBox alignment="CENTER" maxWidth="350" prefHeight="528.0" prefWidth="350.0" spacing="10">
+            <Text id="title" fill="#08a432" styleClass="title" text="CUPHEAD">
+                <font>
+                    <Font name="System Bold" size="61.0"/>
+                </font>
+            </Text>
+            <Label text="Username" textFill="RED">
+                <font>
+                    <Font size="26.0"/>
+                </font>
+            </Label>
+            <Button fx:id="changeUsername" styleClass="primary-btn" text="Change Username" />
+            <Button fx:id="changePassword" layoutX="164.0" layoutY="48.0" styleClass="primary-btn"
+                    text="Change Password" />
+        </VBox>
+    </center>
+</BorderPane>
