@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class MiniBoss extends Rectangle {
     private ArrayList<Sprite> sprites;
+    private double HP;
 
     public MiniBoss(int x, int y, int vX, int vY) {
         super(x, y, 30, 30);
         sprites = new ArrayList<>();
+        HP = 2;
         Sprite newSprite1 = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\miniboss1.png", -200, 0);
         Sprite newSprite2 = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\miniboss2.png", -200, 0);
         Sprite newSprite3 = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\miniboss3.png", -200, 0);
@@ -33,5 +35,13 @@ public class MiniBoss extends Rectangle {
 
     public ArrayList<Sprite> getSprites() {
         return this.sprites;
+    }
+
+    public void reduceHP() {
+        this.HP --;
+    }
+
+    public double getHP() {
+        return this.HP;
     }
 }

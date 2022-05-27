@@ -13,11 +13,17 @@
 .playersHP{
     -fx-font-size: 15px;
     -fx-font-family: Arial;
-    -fx-text-fill: red;
+    -fx-text-fill: purple;
 }
 
 .bossHP{
     -fx-font-size: 15px;
     -fx-font-family: Arial;
     -fx-text-fill: green;
+}
+
+.playersHPRed{
+    -fx-font-size: 15px;
+    -fx-font-family: Arial;
+    -fx-text-fill: red;
 }

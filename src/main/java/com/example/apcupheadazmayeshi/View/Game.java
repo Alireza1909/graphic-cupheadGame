@@ -112,7 +112,7 @@ public class Game {
 
 
         Sprite bulletIcon = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\shmup_icon_bullet_0001.png");
-        Rectangle rectangle1 = new Rectangle(30,30 ,40,40);
+        Rectangle rectangle1 = new Rectangle(30, 30, 40, 40);
         Sprite bombIcon = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\shmup_icon_bomb_0001.png");
         bulletIcon.setCoordinate(rectangle1);
         bombIcon.setCoordinate(rectangle1);
@@ -130,6 +130,7 @@ public class Game {
             int tab_flag = 20;
             String attackType = "bullet";
             int blink_timer = 60;
+            boolean isBlinking = false;
             int cycleForBoss = 0;
             boolean isMusicPaused = false;
             int musicPause = 20;
@@ -140,6 +141,7 @@ public class Game {
             int minute = 9;
             int second = 59;
             int counter = 60;
+            boolean isHPLessThan2 = false;
             @Override
             public void handle(long time) {
                 if (keys.contains("UP")) {
@@ -168,17 +170,20 @@ public class Game {
                     else if (attackType.equals("bomb")) attackType = "bullet";
                     tab_flag = 20;
                 }
-                if (keys.contains("P") && musicPause < 0){
+                if (keys.contains("P") && musicPause < 0) {
                     musicPause = 20;
                     mediaPlayer.pause();
                     isMusicPaused = !isMusicPaused;
                 }
-                if (keys.contains("M") && musicMute < 0){
+                if (keys.contains("M") && musicMute < 0) {
                     mediaPlayer.setMute(!mediaPlayer.isMute());
                     isMusicMuted = !isMusicMuted;
                     musicMute = 20;
                 }
-                if (miniBossTimer < 0){
+                if (isBlinking && blink_timer < 0){
+                    isBlinking = false;
+                }
+                if (miniBossTimer < 0) {
                     miniBossTimer = 300;
                     gameBoardController.addMiniBoss();
                 }
@@ -187,6 +192,16 @@ public class Game {
                 gameBoardController.updateBombs();
                 gameBoardController.updateBoss();
                 gameBoardController.updateMiniBoss();
+
+                if (!isBlinking && gameBoardController.updateCupHead()) {
+                    isBlinking = true;
+                    blink_timer = 60;
+                }
+                if (gameBoard.getCupHead().getHP() <= 1 && !isHPLessThan2){
+                    playersHP.getStyleClass().add("playersHPRed");
+                    isHPLessThan2 = true;
+                }
+                //gameBoardController.overlapChecking();
                 //display and update bombs and bullets
                 backGround.render(context);
                 for (Bullet bullet : gameBoard.getBullets()) {
@@ -194,14 +209,14 @@ public class Game {
                     bullet.getSprite().render(context);
                 }
                 for (Bomb bomb : gameBoard.getBombs()) {
-                    bomb.getSprite().update(1/60.0);
+                    bomb.getSprite().update(1 / 60.0);
                     bomb.getSprite().render(context);
                 }
                 for (MiniBoss miniBoss : gameBoard.getMiniBoss()) {
-                    miniBoss.getSprites().get(miniBossCycle/5).update(1/60.0);
-                    miniBoss.getSprites().get(miniBossCycle/5).render(context);
+                    miniBoss.getSprites().get(miniBossCycle / 5).update(1 / 60.0);
+                    miniBoss.getSprites().get(miniBossCycle / 5).render(context);
                 }
-                switch (attackType){
+                switch (attackType) {
                     case "bomb":
                         bombIcon.render(context);
                         break;
@@ -211,17 +226,17 @@ public class Game {
                     default:
                         break;
                 }
-                if (counter<=0){
-                    second --;
-                    if (second == -1){
+                if (counter <= 0) {
+                    second--;
+                    if (second == -1) {
                         second = 59;
                         minute--;
                     }
                     counter = 60;
                 }
-                cycleForBoss ++;
-                cycleForBoss %= (gameBoard.getBoss().getSprites().size()*5);
-                miniBossCycle ++;
+                cycleForBoss++;
+                cycleForBoss %= (gameBoard.getBoss().getSprites().size() * 5);
+                miniBossCycle++;
                 miniBossCycle %= (30);
                 bullet_flag--;
                 tab_flag--;
@@ -230,15 +245,16 @@ public class Game {
                 musicMute--;
                 miniBossTimer--;
                 counter--;
+                blink_timer--;
                 Integer sec = second;
-                timer.setText("0"+minute+":"+(second>9?sec.toString():"0"+sec));
-                Integer HP = gameBoard.getCupHead().getHP();
-                playersHP.setText("HP : "+HP.toString());
+                timer.setText("0" + minute + ":" + (second > 9 ? sec.toString() : "0" + sec));
+                Integer HP = (int) gameBoard.getCupHead().getHP();
+                playersHP.setText("HP : " + HP.toString());
                 Integer XP = gameBoard.getCupHead().getXP();
-                playersXP.setText("score : "+XP.toString());
-                bossHP.setText("HP : "+gameBoard.getBoss().getHP());
-                gameBoard.getCupHead().getSprite().render(context);
-                gameBoard.getBoss().getSprites().get(cycleForBoss/5).render(context);
+                playersXP.setText("score : " + XP.toString());
+                bossHP.setText("HP : " + gameBoard.getBoss().getHP());
+                if ((blink_timer/2) % 2 == 0 || !isBlinking) gameBoard.getCupHead().getSprite().render(context);
+                gameBoard.getBoss().getSprites().get(cycleForBoss / 5).render(context);
             }
         };
 

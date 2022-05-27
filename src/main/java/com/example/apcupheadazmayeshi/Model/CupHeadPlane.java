@@ -5,16 +5,16 @@ import javafx.scene.shape.Rectangle;
 
 public class CupHeadPlane extends Rectangle {
 
-    private int HP;
-    private double damageRate ;
+    private double HP;
+    private double damageRate;
     private double destructionRate;
     private Sprite sprite;
     private boolean isBlinking;
     private int score;
 
-    public CupHeadPlane(int x, int y, int vX, int vY,int level) {
+    public CupHeadPlane(int x, int y, int vX, int vY, int level) {
         super(x, y, vX, vY);
-        switch (level){
+        switch (level) {
             case 1:
                 HP = 10;
                 damageRate = 0.5;
@@ -31,12 +31,12 @@ public class CupHeadPlane extends Rectangle {
                 destructionRate = 1;
                 break;
         }
-        sprite = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\mugman_plane_idle_straight_0001.png",300,200);
+        sprite = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\mugman_plane_idle_straight_0001.png", 300, 200);
         //setWidth(50);setHeight(30);
         sprite.setCoordinate(this);
     }
 
-    public void changePosition(int dx,int dy){
+    public void changePosition(int dx, int dy) {
         this.setX(getX() + dx);
         this.setY(getY() + dy);
     }
@@ -45,11 +45,35 @@ public class CupHeadPlane extends Rectangle {
         return this.sprite;
     }
 
-    public Integer getHP() {
+    public double getHP() {
         return HP;
     }
 
     public Integer getXP() {
         return score;
+    }
+
+    public double getDestructionRate() {
+        return this.destructionRate;
+    }
+
+    public void addScore(int addingScore) {
+        this.score += addingScore;
+    }
+
+    public void costHP() {
+        this.HP--;
+    }
+
+    public boolean intersects(Rectangle rectangle) {
+        if (getX() - getWidth()/2 > rectangle.getX() + rectangle.getWidth() / 2
+                || getX() + getWidth() / 2 < rectangle.getX() - rectangle.getWidth() / 2) {
+            return false;
+        }
+        if (getY() - getHeight() / 2 > rectangle.getY() + rectangle.getHeight() / 2
+                || getY() + getHeight()/2 < rectangle.getY() - rectangle.getHeight() / 2) {
+            return false;
+        }
+        return true;
     }
 }
