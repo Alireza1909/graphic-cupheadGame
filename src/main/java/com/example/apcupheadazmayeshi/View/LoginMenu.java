@@ -1,5 +1,6 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
+import com.example.apcupheadazmayeshi.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,7 +8,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import com.example.apcupheadazmayeshi.Main;
+
 import java.io.IOException;
+import java.net.URL;
 
 public class LoginMenu{
 
@@ -33,7 +37,7 @@ public class LoginMenu{
     }
 
     public static Scene sceneCreator(String resource) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginMenu.class.getResource(resource));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resource));
         Scene scene = new Scene(fxmlLoader.load(),1200,800);
         setSize(scene);
         return scene;

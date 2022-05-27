@@ -1,6 +1,6 @@
 package com.example.apcupheadazmayeshi.Model;
 
-import com.example.apcupheadazmayeshi.Sprite;
+import com.example.apcupheadazmayeshi.View.Sprite;
 
 abstract public class Coordinate {
     protected double x;

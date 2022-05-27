@@ -1,6 +1,7 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Controller.LoginMenuController;
+import com.example.apcupheadazmayeshi.Main;
 import com.example.apcupheadazmayeshi.Model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

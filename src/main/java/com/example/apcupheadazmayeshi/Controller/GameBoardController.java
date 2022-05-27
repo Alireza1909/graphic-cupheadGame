@@ -1,6 +1,5 @@
 package com.example.apcupheadazmayeshi.Controller;
 
-import com.example.apcupheadazmayeshi.Game;
 import com.example.apcupheadazmayeshi.Model.Bomb;
 import com.example.apcupheadazmayeshi.Model.Bullet;
 import com.example.apcupheadazmayeshi.Model.GameBoard;

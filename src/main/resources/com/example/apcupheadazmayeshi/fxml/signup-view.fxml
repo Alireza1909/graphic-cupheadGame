@@ -9,7 +9,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcupheadazmayeshi.SignupController" stylesheets="@../css/LoginStyle.css">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcupheadazmayeshi.View.SignupController" stylesheets="@../css/LoginStyle.css">
     <center>
         <VBox alignment="CENTER">
             <Label alignment="CENTER" text="Username" textFill="#8600ff">

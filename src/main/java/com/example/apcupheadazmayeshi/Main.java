@@ -1,18 +1,18 @@
 package com.example.apcupheadazmayeshi;
 
+import com.example.apcupheadazmayeshi.View.LoginMenu;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Screen;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.net.URL;
 
 import static javafx.application.Application.launch;
 
 public class Main extends Application {
     public static Stage stage;
+    public static MediaPlayer mediaPlayer;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -20,6 +20,9 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         stage = new Stage();
+        URL address = new URL(Main.class.getResource("Audio/indianaJones2.mp3").toString());
+        Media media = new Media(address.toString());
+        mediaPlayer = new MediaPlayer(media);
         LoginMenu loginMenu = new LoginMenu();
         loginMenu.start(stage);
     }

@@ -6,4 +6,6 @@ module com.example.apcupheadazmayeshi {
 
     opens com.example.apcupheadazmayeshi to javafx.fxml;
     exports com.example.apcupheadazmayeshi;
+    exports com.example.apcupheadazmayeshi.View;
+    opens com.example.apcupheadazmayeshi.View to javafx.fxml;
 }

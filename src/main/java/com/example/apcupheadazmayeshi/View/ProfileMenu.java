@@ -1,5 +1,6 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
+import com.example.apcupheadazmayeshi.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

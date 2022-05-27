@@ -1,6 +1,8 @@
 package com.example.apcupheadazmayeshi.Model;
 
-import com.example.apcupheadazmayeshi.Sprite;
+import com.example.apcupheadazmayeshi.View.Sprite;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;

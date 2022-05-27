@@ -1,6 +1,6 @@
 package com.example.apcupheadazmayeshi.Model;
 
-import com.example.apcupheadazmayeshi.Sprite;
+import com.example.apcupheadazmayeshi.View.Sprite;
 import javafx.scene.shape.Rectangle;
 
 public class Bomb extends Rectangle {

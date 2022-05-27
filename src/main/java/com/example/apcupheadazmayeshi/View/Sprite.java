@@ -1,7 +1,8 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Model.Coordinate;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -59,7 +60,6 @@ public class Sprite extends ImageView {
 
     public void render(GraphicsContext context) {
         context.save();
-
         context.translate(rectangle.getX(), rectangle.getY());
         context.rotate(0);
         context.translate(-this.image.getWidth() / 2, -this.image.getHeight() / 2);

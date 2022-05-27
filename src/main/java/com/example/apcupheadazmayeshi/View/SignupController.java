@@ -1,6 +1,7 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Controller.SignUpMenuController;
+import com.example.apcupheadazmayeshi.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;

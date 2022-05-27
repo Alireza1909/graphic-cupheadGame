@@ -1,21 +1,19 @@
-package com.example.apcupheadazmayeshi;
+package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Controller.GameBoardController;
+import com.example.apcupheadazmayeshi.Main;
 import com.example.apcupheadazmayeshi.Model.Bomb;
 import com.example.apcupheadazmayeshi.Model.Bullet;
 import com.example.apcupheadazmayeshi.Model.GameBoard;
 import com.example.apcupheadazmayeshi.Model.MiniBoss;
 import javafx.animation.AnimationTimer;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -25,7 +23,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class Game {
@@ -88,7 +85,7 @@ public class Game {
         Label playersXP = new Label();
         Label playersHP = new Label();
         Label bossHP = new Label();
-        URL address1 = new URL(Game.class.getResource("css/GameLabels.css").toString());
+        URL address1 = new URL(Main.class.getResource("css/GameLabels.css").toString());
         timer.getStylesheets().add(address1.toString());
         playersHP.getStylesheets().add(address1.toString());
         playersXP.getStylesheets().add(address1.toString());
@@ -119,10 +116,13 @@ public class Game {
 
         System.out.println("salap");
         handleKey(scene);
-        URL address = new URL(Game.class.getResource("Audio/indianaJones2.mp3").toString());
+        URL address = new URL(Main.class.getResource("Audio/indianaJones2.mp3").toString());
 
         Media media = new Media(address.toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setSaturation(-1);
 
         AnimationTimer animationTimer = new AnimationTimer() {
             int bullet_flag = 30;
@@ -188,6 +188,7 @@ public class Game {
                     gameBoardController.addMiniBoss();
                 }
                 if (!isMusicPaused) mediaPlayer.play();
+                context.setEffect(colorAdjust);
                 gameBoardController.updateBullets();
                 gameBoardController.updateBombs();
                 gameBoardController.updateBoss();
