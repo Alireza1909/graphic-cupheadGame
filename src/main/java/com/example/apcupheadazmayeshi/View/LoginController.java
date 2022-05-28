@@ -53,7 +53,7 @@ public class LoginController {
     }
 
     public void guestLogin(MouseEvent mouseEvent) throws IOException {
-        int level = 1;
+        int level = 3;
         Game game = new Game(level, Main.stage);
     }
 

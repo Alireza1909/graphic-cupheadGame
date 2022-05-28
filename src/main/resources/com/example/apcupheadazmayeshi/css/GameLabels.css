@@ -27,3 +27,11 @@
     -fx-font-family: Arial;
     -fx-text-fill: red;
 }
+
+.progressBarFull{
+    -fx-accent : #2bff2b;
+}
+
+.progressBarRed{
+    -fx-accent : red;
+}

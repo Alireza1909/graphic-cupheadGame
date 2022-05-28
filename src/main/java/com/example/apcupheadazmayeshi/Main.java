@@ -20,9 +20,10 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         stage = new Stage();
-        URL address = new URL(Main.class.getResource("Audio/indianaJones2.mp3").toString());
+        URL address = new URL(Main.class.getResource("Audio/Alfred-Hitchcock-Presents-Theme.mp3").toString());
         Media media = new Media(address.toString());
         mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         LoginMenu loginMenu = new LoginMenu();
         loginMenu.start(stage);
     }

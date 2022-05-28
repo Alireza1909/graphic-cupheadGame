@@ -61,8 +61,11 @@ public class Sprite extends ImageView {
     public void render(GraphicsContext context) {
         context.save();
         context.translate(rectangle.getX(), rectangle.getY());
-        context.rotate(0);
+//        context.rotate(0);
         context.translate(-this.image.getWidth() / 2, -this.image.getHeight() / 2);
+//        ColorAdjust dooDooL = new ColorAdjust();
+//        doodool.setSaturation(-1);
+        //context.setEffect(doodool);
         context.drawImage(this.image, 0, 0);
         context.restore();
     }

@@ -42,6 +42,7 @@ public class GameBoardController {
                 if (gameBoard.getBullets().get(i).intersects(gameBoard.getMiniBoss().get(j))) {
                     gameBoard.getMiniBoss().get(j).reduceHP();
                     gameBoard.removeBulletByIndex(i);
+                    break;
                 }
             }
         }

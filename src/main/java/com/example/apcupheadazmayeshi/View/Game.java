@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -63,6 +64,7 @@ public class Game {
     }
 
     public void run() throws MalformedURLException {
+        Main.mediaPlayer.stop();
         Pane root = new Pane();
         Scene scene = new Scene(root);
         //Main.stage.setScene(scene);
@@ -116,13 +118,29 @@ public class Game {
 
         System.out.println("salap");
         handleKey(scene);
-        URL address = new URL(Main.class.getResource("Audio/indianaJones2.mp3").toString());
 
+        URL address = new URL(Main.class.getResource("Audio/indianaJones2.mp3").toString());
         Media media = new Media(address.toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setSaturation(-1);
+        URL bombAudioAddress = new URL(Main.class.getResource("Audio/Bomb.mp3").toString());
+        Media bombMedia = new Media(bombAudioAddress.toString());
+
+
+//        URL bombAudioAddress = new URL(Main.class.getResource("Audio/Bomb.mp3").toString());
+//        Media media = new Media(address.toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        URL bulletAudioAddress = new URL(Main.class.getResource("Audio/Bullet.mp3").toString());
+        Media bulletMedia = new Media(bulletAudioAddress.toString());
+
+
+        ProgressBar progressBar = new ProgressBar();
+        progressBar.getStylesheets().add(address1.toString());
+        progressBar.getStyleClass().add("progressBarFull");
+        root.getChildren().add(progressBar);
+        progressBar.setLayoutX(800);
+        progressBar.setLayoutY(20);
 
         AnimationTimer animationTimer = new AnimationTimer() {
             int bullet_flag = 30;
@@ -142,6 +160,7 @@ public class Game {
             int second = 59;
             int counter = 60;
             boolean isHPLessThan2 = false;
+            boolean isBossHPLessThan10 = false;
             @Override
             public void handle(long time) {
                 if (keys.contains("UP")) {
@@ -159,10 +178,14 @@ public class Game {
                 if (keys.contains("SPACE")) {
                     if (attackType.equals("bullet") && bullet_flag < 0) {
                         gameBoardController.addBullet();
-                        bullet_flag = 30;
+                        bullet_flag = 10;
+                        MediaPlayer bulletMediaPlayer = new MediaPlayer(bulletMedia);
+                        bulletMediaPlayer.play();
                     } else if (attackType.equals("bomb") && bomb_flag < 0) {
                         gameBoardController.addBomb();
-                        bomb_flag = 45;
+                        bomb_flag = 25;
+                        MediaPlayer bombMediaPlayer = new MediaPlayer(bombMedia);
+                        bombMediaPlayer.play();
                     }
                 }
                 if (keys.contains("TAB") && tab_flag < 0) {
@@ -184,11 +207,15 @@ public class Game {
                     isBlinking = false;
                 }
                 if (miniBossTimer < 0) {
-                    miniBossTimer = 300;
+                    miniBossTimer = 40;
                     gameBoardController.addMiniBoss();
                 }
                 if (!isMusicPaused) mediaPlayer.play();
-                context.setEffect(colorAdjust);
+                if (!isBossHPLessThan10 && gameBoard.getBoss().getHP() <= 50){
+                    isBossHPLessThan10 = true;
+                    progressBar.getStyleClass().add("progressBarRed");
+                }
+                //context.setEffect(colorAdjust);
                 gameBoardController.updateBullets();
                 gameBoardController.updateBombs();
                 gameBoardController.updateBoss();
@@ -256,6 +283,9 @@ public class Game {
                 bossHP.setText("HP : " + gameBoard.getBoss().getHP());
                 if ((blink_timer/2) % 2 == 0 || !isBlinking) gameBoard.getCupHead().getSprite().render(context);
                 gameBoard.getBoss().getSprites().get(cycleForBoss / 5).render(context);
+                progressBar.setProgress(gameBoard.getBoss().getHP()/100.0);
+
+                //System.gc();
             }
         };
 
