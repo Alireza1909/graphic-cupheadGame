@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Boss extends Rectangle {
 
     private ArrayList<BossesKid> kids;
-    private ArrayList<BirdBullet> eggs;
     private ArrayList<Sprite> sprites;
     private double HP;
 
@@ -18,7 +17,7 @@ public class Boss extends Rectangle {
         super(x, y, 60, 60);
         kids = new ArrayList<>();
         sprites = new ArrayList<>();
-        eggs = new ArrayList<>();
+        //eggs = new ArrayList<>();
         HP = 100.0;
         Sprite newSprite1 = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\boss1.png", 0, 30);
         Sprite newSprite2 = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\boss2.png", 0, 30);

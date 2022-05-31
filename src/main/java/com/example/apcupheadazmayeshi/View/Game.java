@@ -2,10 +2,7 @@ package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Controller.GameBoardController;
 import com.example.apcupheadazmayeshi.Main;
-import com.example.apcupheadazmayeshi.Model.Bomb;
-import com.example.apcupheadazmayeshi.Model.Bullet;
-import com.example.apcupheadazmayeshi.Model.GameBoard;
-import com.example.apcupheadazmayeshi.Model.MiniBoss;
+import com.example.apcupheadazmayeshi.Model.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -53,7 +50,7 @@ public class Game {
 //        }
 //    };
 
-    public Game(int level, Stage stage1) throws IOException {
+    public Game(int level) throws IOException {
         gameBoard = new GameBoard(level);
         keys = new ArrayList<>();
         start();
@@ -63,8 +60,10 @@ public class Game {
         run();
     }
 
-    public void run() throws MalformedURLException {
-        Main.mediaPlayer.stop();
+    public void run() throws IOException {
+//        Main.mediaPlayer.stop();
+        Main.mediaPlayer.pause();
+        System.out.println(111);
         Pane root = new Pane();
         Scene scene = new Scene(root);
         //Main.stage.setScene(scene);
@@ -78,10 +77,6 @@ public class Game {
 //        handleKey(scene);
         GameBoardController gameBoardController = new GameBoardController(gameBoard);
 
-
-        Sprite backGround = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\sunset-sky-10.jpg");
-        Rectangle rectangle = new Rectangle(500, 400, 1000, 800);
-        backGround.setCoordinate(rectangle);
 
         Label timer = new Label();
         Label playersXP = new Label();
@@ -135,12 +130,19 @@ public class Game {
         Media bulletMedia = new Media(bulletAudioAddress.toString());
 
 
+        URL squeakAudioAddress = new URL(Main.class.getResource("Audio/squeak.wav").toString());
+        Media squeakMedia = new Media(squeakAudioAddress.toString());
+
+
         ProgressBar progressBar = new ProgressBar();
         progressBar.getStylesheets().add(address1.toString());
         progressBar.getStyleClass().add("progressBarFull");
         root.getChildren().add(progressBar);
         progressBar.setLayoutX(800);
         progressBar.setLayoutY(20);
+
+        final boolean[] isGameFinished = {false};
+        Rectangle rectangle = new Rectangle(500, 400, 1000, 800);
 
         AnimationTimer animationTimer = new AnimationTimer() {
             int bullet_flag = 30;
@@ -161,6 +163,9 @@ public class Game {
             int counter = 60;
             boolean isHPLessThan2 = false;
             boolean isBossHPLessThan10 = false;
+            int birdBullet = 100;
+            int backgroundTimer = 0;
+            Sprite backGround;
             @Override
             public void handle(long time) {
                 if (keys.contains("UP")) {
@@ -180,12 +185,12 @@ public class Game {
                         gameBoardController.addBullet();
                         bullet_flag = 10;
                         MediaPlayer bulletMediaPlayer = new MediaPlayer(bulletMedia);
-                        bulletMediaPlayer.play();
+                        if (!isMusicMuted) bulletMediaPlayer.play();
                     } else if (attackType.equals("bomb") && bomb_flag < 0) {
                         gameBoardController.addBomb();
                         bomb_flag = 25;
                         MediaPlayer bombMediaPlayer = new MediaPlayer(bombMedia);
-                        bombMediaPlayer.play();
+                        if (!isMusicMuted)bombMediaPlayer.play();
                     }
                 }
                 if (keys.contains("TAB") && tab_flag < 0) {
@@ -203,7 +208,7 @@ public class Game {
                     isMusicMuted = !isMusicMuted;
                     musicMute = 20;
                 }
-                if (isBlinking && blink_timer < 0){
+                if (isBlinking && blink_timer < 0) {
                     isBlinking = false;
                 }
                 if (miniBossTimer < 0) {
@@ -211,9 +216,20 @@ public class Game {
                     gameBoardController.addMiniBoss();
                 }
                 if (!isMusicPaused) mediaPlayer.play();
-                if (!isBossHPLessThan10 && gameBoard.getBoss().getHP() <= 50){
+                if (!isBossHPLessThan10 && gameBoard.getBoss().getHP() <= 50) {
                     isBossHPLessThan10 = true;
                     progressBar.getStyleClass().add("progressBarRed");
+                }
+                if (birdBullet <= 0) {
+                    gameBoardController.addEgg();
+                    birdBullet = 100;
+                    MediaPlayer squeakPlayer = new MediaPlayer(squeakMedia);
+                    if (!isMusicMuted) squeakPlayer.play();
+                }
+                if (backgroundTimer <=0){
+                    backgroundTimer = 1800;
+                    backGround = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\amir.gif");
+                    backGround.setCoordinate(rectangle);
                 }
                 //context.setEffect(colorAdjust);
                 gameBoardController.updateBullets();
@@ -221,11 +237,16 @@ public class Game {
                 gameBoardController.updateBoss();
                 gameBoardController.updateMiniBoss();
 
+                if (gameBoardController.updateEggs() && !isBlinking) {
+                    isBlinking = true;
+                    blink_timer = 60;
+                }
+
                 if (!isBlinking && gameBoardController.updateCupHead()) {
                     isBlinking = true;
                     blink_timer = 60;
                 }
-                if (gameBoard.getCupHead().getHP() <= 1 && !isHPLessThan2){
+                if (gameBoard.getCupHead().getHP() <= 1 && !isHPLessThan2) {
                     playersHP.getStyleClass().add("playersHPRed");
                     isHPLessThan2 = true;
                 }
@@ -243,6 +264,10 @@ public class Game {
                 for (MiniBoss miniBoss : gameBoard.getMiniBoss()) {
                     miniBoss.getSprites().get(miniBossCycle / 5).update(1 / 60.0);
                     miniBoss.getSprites().get(miniBossCycle / 5).render(context);
+                }
+                for (BirdBullet egg : gameBoard.getEggs()) {
+                    egg.getSprite().update(1 / 60.0);
+                    egg.getSprite().render(context);
                 }
                 switch (attackType) {
                     case "bomb":
@@ -262,6 +287,7 @@ public class Game {
                     }
                     counter = 60;
                 }
+                //update seconds
                 cycleForBoss++;
                 cycleForBoss %= (gameBoard.getBoss().getSprites().size() * 5);
                 miniBossCycle++;
@@ -274,6 +300,8 @@ public class Game {
                 miniBossTimer--;
                 counter--;
                 blink_timer--;
+                birdBullet--;
+                backgroundTimer--;
                 Integer sec = second;
                 timer.setText("0" + minute + ":" + (second > 9 ? sec.toString() : "0" + sec));
                 Integer HP = (int) gameBoard.getCupHead().getHP();
@@ -281,10 +309,22 @@ public class Game {
                 Integer XP = gameBoard.getCupHead().getXP();
                 playersXP.setText("score : " + XP.toString());
                 bossHP.setText("HP : " + gameBoard.getBoss().getHP());
-                if ((blink_timer/2) % 2 == 0 || !isBlinking) gameBoard.getCupHead().getSprite().render(context);
+                if ((blink_timer / 2) % 2 == 0 || !isBlinking) gameBoard.getCupHead().getSprite().render(context);
                 gameBoard.getBoss().getSprites().get(cycleForBoss / 5).render(context);
-                progressBar.setProgress(gameBoard.getBoss().getHP()/100.0);
-
+                progressBar.setProgress(gameBoard.getBoss().getHP() / 100.0);
+                if (gameBoard.getCupHead().getHP() <= 0
+                        || gameBoard.getBoss().getHP() <= 0
+                        || minute == 0 && second == 0) {
+                    mediaPlayer.stop();
+                    this.stop();
+                    StatusMenu statusMenu = new StatusMenu();
+                    gameBoardController.updateFinalScore();
+                    try {
+                        statusMenu.start(gameBoard);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 //System.gc();
             }
         };
@@ -293,6 +333,9 @@ public class Game {
 
         Main.stage.show();
         System.out.println("salam");
+//        while (!isGameFinished[0]){
+//
+//        }
     }
 
     public void handleKey(Scene scene) {

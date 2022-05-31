@@ -10,6 +10,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginController {
     @FXML
@@ -18,6 +20,8 @@ public class LoginController {
     private TextField currentPassword = new TextField();
     @FXML
     private TextField currentUsername = new TextField();
+    @FXML
+    private TextField gameLevel = new TextField();
 
     public static LoginMenuController loginMenuController = new LoginMenuController();
 
@@ -37,14 +41,12 @@ public class LoginController {
 
 
     public void login(MouseEvent mouseEvent) throws IOException {
-        User user = loginMenuController.getExistingUser(currentPassword.toString(),currentUsername.toString());
-        if (user == null){
+        User user = loginMenuController.getExistingUser(currentPassword.getText(), currentUsername.getText());
+        if (user == null) {
             LoginMenu.showInvalidLogin();
-        }
-        else{
+        } else {
             User.loggedInUser = user;
-            ProfileMenu profileMenu = new ProfileMenu();
-            profileMenu.start(Main.stage);
+            LoginMenu.showGameLevel();
         }
     }
 
@@ -53,8 +55,28 @@ public class LoginController {
     }
 
     public void guestLogin(MouseEvent mouseEvent) throws IOException {
-        int level = 3;
-        Game game = new Game(level, Main.stage);
+        int level = 2;
+        Game game = new Game(level);
     }
 
+    public void goToGame(MouseEvent mouseEvent) throws IOException {
+        int level;
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(gameLevel.getText());
+        if (!matcher.matches()) level = 2;
+        else level = Integer.parseInt(gameLevel.getText());
+
+        if (level > 3 || level < 1) level = 2;
+        Game newGame = new Game(level);
+    }
+
+
+    public void updateGameLevel(KeyEvent keyEvent) {
+        gameLevel = (TextField) keyEvent.getSource();
+    }
+
+    public void logout(MouseEvent mouseEvent) {
+        User.loggedInUser = null;
+        LoginMenu.showLoginMenu();
+    }
 }

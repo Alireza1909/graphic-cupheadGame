@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../css/loseStyle.css"
+            fx:controller="com.example.apcupheadazmayeshi.View.StatusController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <Text fill="#eaeaea" strokeType="OUTSIDE" strokeWidth="0.0" text="you lost :(">
+                    <font>
+                        <Font size="23.0"/>
+                    </font>
+                </Text>
+                <Button mnemonicParsing="false" text="restart"/>
+                <Button mnemonicParsing="false" text="back"/>
+                <Text fx:id="scoreText" text="" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

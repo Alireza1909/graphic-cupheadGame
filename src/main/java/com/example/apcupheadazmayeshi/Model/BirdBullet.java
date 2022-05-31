@@ -7,7 +7,7 @@ public class BirdBullet extends Rectangle{
 
     private Sprite sprite;
 
-    public BirdBullet(int x, int y) {
+    public BirdBullet(double x, double y) {
         super(x, y,60,40);
         sprite = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\bird_bullet_0002.png", -300, 0);
         sprite.setCoordinate(this);

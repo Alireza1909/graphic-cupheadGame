@@ -13,6 +13,7 @@ public class GameBoard {
     private ArrayList<Bullet> bullets;
     private ArrayList<Bomb> bombs;
     private ArrayList<MiniBoss> miniBossArrayList;
+    private ArrayList<BirdBullet> eggs;
 
 
     public GameBoard(int level) {
@@ -22,6 +23,7 @@ public class GameBoard {
         bullets = new ArrayList<>();
         bombs = new ArrayList<>();
         miniBossArrayList = new ArrayList<>();
+        eggs = new ArrayList<>();
     }
 
 
@@ -77,5 +79,17 @@ public class GameBoard {
 
     public void removeMiniBossByIndex(int i) {
         this.miniBossArrayList.remove(i);
+    }
+
+    public void addEgg(BirdBullet birdBullet){
+        this.eggs.add(birdBullet);
+    }
+
+    public void removeEggByIndex(int i){
+        this.eggs.remove(i);
+    }
+
+    public ArrayList<BirdBullet> getEggs() {
+        return eggs;
     }
 }

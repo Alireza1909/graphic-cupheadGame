@@ -1,9 +1,6 @@
 package com.example.apcupheadazmayeshi.Controller;
 
-import com.example.apcupheadazmayeshi.Model.Bomb;
-import com.example.apcupheadazmayeshi.Model.Bullet;
-import com.example.apcupheadazmayeshi.Model.GameBoard;
-import com.example.apcupheadazmayeshi.Model.MiniBoss;
+import com.example.apcupheadazmayeshi.Model.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -103,14 +100,14 @@ public class GameBoardController {
         gameBoard.addMiniBoss(miniBoss);
     }
 
-    public boolean updateCupHead(){
+    public boolean updateCupHead() {
         boolean answer = false;
-        if (gameBoard.getCupHead().intersects(gameBoard.getBoss())){
+        if (gameBoard.getCupHead().intersects(gameBoard.getBoss())) {
             gameBoard.getCupHead().costHP();
             answer = true;
         }
-        for (int i=0;i<gameBoard.getMiniBoss().size();i++){
-            if (gameBoard.getCupHead().intersects(gameBoard.getMiniBoss().get(i))){
+        for (int i = 0; i < gameBoard.getMiniBoss().size(); i++) {
+            if (gameBoard.getCupHead().intersects(gameBoard.getMiniBoss().get(i))) {
                 if (!answer) gameBoard.getCupHead().costHP();
                 answer = true;
                 gameBoard.removeMiniBossByIndex(i);
@@ -122,5 +119,34 @@ public class GameBoardController {
 //        for
 //    }
 
+    public void addEgg() {
+        BirdBullet birdBullet = new BirdBullet(gameBoard.getBoss().getX(), gameBoard.getBoss().getY());
+        gameBoard.addEgg(birdBullet);
+    }
 
+    public boolean updateEggs() {
+        boolean answer = false;
+        for (int i = 0; i < gameBoard.getEggs().size(); i++) {
+            if (gameBoard.getCupHead().intersects(gameBoard.getEggs().get(i))) {
+                gameBoard.getCupHead().costHP();
+                gameBoard.removeEggByIndex(i);
+                answer = true;
+                continue;
+            }
+            if (gameBoard.getEggs().get(i).getX() <= 0) {
+                gameBoard.removeEggByIndex(i);
+            }
+        }
+        return answer;
+    }
+
+    public void updateFinalScore() {
+        if (gameBoard.getBoss().getHP() <= 0) {
+            int addingScore = (int) (gameBoard.getCupHead().getHP() * 600);
+            gameBoard.getCupHead().addScore(addingScore);
+        } else if (gameBoard.getCupHead().getHP() <= 0) {
+            int addingScore = (int) (gameBoard.getBoss().getHP() * 20);
+            gameBoard.getCupHead().addScore(-addingScore);
+        }
+    }
 }

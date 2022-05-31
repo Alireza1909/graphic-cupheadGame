@@ -1,11 +1,16 @@
 package com.example.apcupheadazmayeshi.View;
 
 import com.example.apcupheadazmayeshi.Model.Coordinate;
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,13 +65,14 @@ public class Sprite extends ImageView {
 
     public void render(GraphicsContext context) {
         context.save();
-        context.translate(rectangle.getX(), rectangle.getY());
 //        context.rotate(0);
-        context.translate(-this.image.getWidth() / 2, -this.image.getHeight() / 2);
-//        ColorAdjust dooDooL = new ColorAdjust();
+
+//        ColorAdjust doodool = new ColorAdjust();
 //        doodool.setSaturation(-1);
-        //context.setEffect(doodool);
-        context.drawImage(this.image, 0, 0);
+//        context.setEffect(doodool);
+        context.translate(rectangle.getX(), rectangle.getY());
+        context.translate(-this.image.getWidth() / 2, -this.image.getHeight() / 2);
+        context.drawImage(this.image, 0, 0,this.image.getWidth(),this.image.getHeight());
         context.restore();
     }
 

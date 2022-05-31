@@ -62,7 +62,7 @@ public class CupHeadPlane extends Rectangle {
     }
 
     public void costHP() {
-        this.HP--;
+        this.HP -= damageRate;
     }
 
     public boolean intersects(Rectangle rectangle) {

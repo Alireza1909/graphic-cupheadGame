@@ -44,8 +44,9 @@ public class SignupMenu {
         Main.stage.show();
     }
 
-    public void showError(String message){
-
+    public static void showError(){
+        Main.stage.setScene(invalidSignup);
+        Main.stage.show();
     }
 
     public static void setErrorMessage(String errorMessage) {

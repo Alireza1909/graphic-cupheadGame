@@ -17,9 +17,15 @@ public class LoginMenu{
 
     public static Scene loginPage;
     public static Scene invalidLogin;
+    public static Scene chooseGameLevel;
 
     public static void showLoginMenu() {
         Main.stage.setScene(loginPage);
+        Main.stage.show();
+    }
+
+    public static void showGameLevel() {
+        Main.stage.setScene(chooseGameLevel);
         Main.stage.show();
     }
 
@@ -34,6 +40,7 @@ public class LoginMenu{
     private static void createAllScenes() throws IOException{
         loginPage = sceneCreator("fxml/Login-view.fxml");
         invalidLogin = sceneCreator("fxml/InvalidLogin-view.fxml");
+        chooseGameLevel = sceneCreator("fxml/gameLevel.fxml");
     }
 
     public static Scene sceneCreator(String resource) throws IOException{

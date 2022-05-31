@@ -11,7 +11,7 @@
 <?import javafx.scene.control.Button?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcupheadazmayeshi.View.SignupController" stylesheets="@../css/LoginStyle.css">
     <center>
-        <VBox alignment="CENTER">
+        <VBox alignment="CENTER" maxWidth="350" prefHeight="528.0">
             <Label alignment="CENTER" text="Username" textFill="#8600ff">
                 <font>
                     <Font size="26.0" />
@@ -32,7 +32,7 @@
          <PasswordField fx:id="password1" alignment="CENTER" onKeyTyped="#checkPassword" promptText="enter your password again" />
             <HBox spacing="15.0" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <Button fx:id="registerButton" styleClass="primary-btn" text="Login" onMouseClicked="#signup"/>
+                    <Button fx:id="registerButton" styleClass="primary-btn" text="Signup" onMouseClicked="#signup"/>
                     <Button fx:id="registerButton1" layoutX="164.0" layoutY="48.0" styleClass="primary-btn"
                             text="Back" onMouseClicked="#BackToLoginMenu"/>
                 </children>
