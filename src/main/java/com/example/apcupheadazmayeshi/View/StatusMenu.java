@@ -41,7 +41,7 @@ public class StatusMenu {
     }
 
     private static void createAllScenes() throws IOException {
-        victory = sceneCreator("fxml/victory-view.fxml");
+        //victory = sceneCreator("fxml/victory-view.fxml");
         loss = sceneCreator("fxml/defeat-view.fxml");
     }
 

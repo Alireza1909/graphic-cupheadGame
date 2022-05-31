@@ -2,10 +2,11 @@ package com.example.apcupheadazmayeshi.View;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class StatusController {
-    public static int score;
+    public int score;
 
     @FXML
     public Text scoreText = new Text();
@@ -20,5 +21,11 @@ public class StatusController {
     }
 
 
+    public void gameLevel(MouseEvent mouseEvent) {
+        LoginMenu.showGameLevel();
+    }
 
+    public void backToLoginMenu(MouseEvent mouseEvent) {
+        LoginMenu.showLoginMenu();
+    }
 }

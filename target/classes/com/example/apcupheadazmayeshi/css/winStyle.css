@@ -1,3 +1,10 @@
+.title{
+    -fx-font-size: 40px;
+    -fx-font-family: sans-serif;
+    -fx-text-fill: #00ff33;
+    -fx-background-color: #00ff48;
+}
+
 .root{
     -fx-background-image: url("winpage.jpg");
 }

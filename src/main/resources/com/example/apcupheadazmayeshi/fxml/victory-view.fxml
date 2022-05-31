@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@../css/loseStyle.css"
+            stylesheets="@../css/winStyle.css"
             fx:controller="com.example.apcupheadazmayeshi.View.StatusController"
             prefHeight="400.0" prefWidth="600.0">
     <center>
@@ -18,8 +18,8 @@
                 <Font size="23.0" />
              </font>
           </Text>
-          <Button mnemonicParsing="false" text="restart" />
-          <Button mnemonicParsing="false" text="back" />
+          <Button mnemonicParsing="false" text="restart" onMouseClicked="#gameLevel" />
+          <Button mnemonicParsing="false" text="back" onMouseClicked="#backToLoginMenu" />
           <Text fx:id="scoreText" text="" />
        </children>
     </VBox>
