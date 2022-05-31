@@ -8,12 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginController {
+    public static int score;
+    public static double progres;
     @FXML
     private Label welcomeText = new Label();
     @FXML
@@ -22,6 +25,10 @@ public class LoginController {
     private TextField currentUsername = new TextField();
     @FXML
     private TextField gameLevel = new TextField();
+    @FXML
+    private Text progress;
+    @FXML
+    private Text scoreField;
 
     public static LoginMenuController loginMenuController = new LoginMenuController();
 
@@ -78,5 +85,19 @@ public class LoginController {
     public void logout(MouseEvent mouseEvent) {
         User.loggedInUser = null;
         LoginMenu.showLoginMenu();
+    }
+
+    public void gameLevel(MouseEvent mouseEvent) {
+        LoginMenu.showGameLevel();
+    }
+
+    public void setProgress(MouseEvent mouseEvent) {
+        //progress = new Text();
+        progress.setText("progress = " + progres*100 + "%");
+    }
+
+    public void setScore(MouseEvent mouseEvent){
+        //scoreField = new Text();
+        scoreField.setText("score = "+score);
     }
 }

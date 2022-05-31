@@ -8,19 +8,20 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@../css/winStyle.css"
-            fx:controller="com.example.apcupheadazmayeshi.View.StatusController"
+            fx:controller="com.example.apcupheadazmayeshi.View.LoginController"
             prefHeight="400.0" prefWidth="600.0">
     <center>
     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
        <children>
-          <Text fill="#eaeaea" strokeType="OUTSIDE" strokeWidth="0.0" text="you win motherfucker!">
+          <Text fill="#eaeaea" strokeType="OUTSIDE" strokeWidth="0.0" text="you won!">
              <font>
                 <Font size="23.0" />
              </font>
           </Text>
           <Button mnemonicParsing="false" text="restart" onMouseClicked="#gameLevel" />
           <Button mnemonicParsing="false" text="back" onMouseClicked="#backToLoginMenu" />
-          <Text fx:id="scoreText" text="" />
+          <Text fx:id="scoreField" text="" />
+           <Button mnemonicParsing="false" text="show score"  onMouseClicked="#setScore"/>
        </children>
     </VBox>
     </center>

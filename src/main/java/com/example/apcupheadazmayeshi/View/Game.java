@@ -166,6 +166,7 @@ public class Game {
             int birdBullet = 100;
             int backgroundTimer = 0;
             Sprite backGround;
+
             @Override
             public void handle(long time) {
                 if (keys.contains("UP")) {
@@ -190,7 +191,7 @@ public class Game {
                         gameBoardController.addBomb();
                         bomb_flag = 25;
                         MediaPlayer bombMediaPlayer = new MediaPlayer(bombMedia);
-                        if (!isMusicMuted)bombMediaPlayer.play();
+                        if (!isMusicMuted) bombMediaPlayer.play();
                     }
                 }
                 if (keys.contains("TAB") && tab_flag < 0) {
@@ -226,7 +227,7 @@ public class Game {
                     MediaPlayer squeakPlayer = new MediaPlayer(squeakMedia);
                     if (!isMusicMuted) squeakPlayer.play();
                 }
-                if (backgroundTimer <=0){
+                if (backgroundTimer <= 0) {
                     backgroundTimer = 1800;
                     backGround = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\amir.gif");
                     backGround.setCoordinate(rectangle);
@@ -317,13 +318,12 @@ public class Game {
                         || minute == 0 && second == 0) {
                     mediaPlayer.stop();
                     this.stop();
-                    StatusMenu statusMenu = new StatusMenu();
+                    int sc = gameBoard.getCupHead().getXP();
                     gameBoardController.updateFinalScore();
-                    try {
-                        statusMenu.start(gameBoard);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    if (sc > gameBoard.getCupHead().getXP())
+                        LoginMenu.showLose((100 - gameBoard.getBoss().getHP()) / 100);
+                    else
+                        LoginMenu.showVictory(gameBoard.getCupHead().getXP());
                 }
                 //System.gc();
             }

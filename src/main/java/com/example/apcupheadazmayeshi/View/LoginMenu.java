@@ -18,14 +18,28 @@ public class LoginMenu{
     public static Scene loginPage;
     public static Scene invalidLogin;
     public static Scene chooseGameLevel;
+    public static Scene victory;
+    public static Scene loss;
 
     public static void showLoginMenu() {
         Main.stage.setScene(loginPage);
         Main.stage.show();
     }
 
+    public static void showVictory(int score) {
+        Main.stage.setScene(victory);
+        LoginController.score = score;
+        Main.stage.show();
+    }
+
     public static void showGameLevel() {
         Main.stage.setScene(chooseGameLevel);
+        Main.stage.show();
+    }
+
+    public static void showLose(double progress) {
+        Main.stage.setScene(loss);
+        LoginController.progres = progress;
         Main.stage.show();
     }
 
@@ -41,6 +55,8 @@ public class LoginMenu{
         loginPage = sceneCreator("fxml/Login-view.fxml");
         invalidLogin = sceneCreator("fxml/InvalidLogin-view.fxml");
         chooseGameLevel = sceneCreator("fxml/gameLevel.fxml");
+        victory = sceneCreator("fxml/victory-view.fxml");
+        loss = sceneCreator("fxml/defeat-view.fxml");
     }
 
     public static Scene sceneCreator(String resource) throws IOException{
