@@ -38,7 +38,7 @@ public class Sprite extends ImageView {
         this.vY = vY;
     }
 
-    public void setImages(ArrayList<Image> images){
+    public void setImages(ArrayList<Image> images) {
         this.images = images;
     }
 
@@ -58,21 +58,16 @@ public class Sprite extends ImageView {
         }
     }
 
-    public void setImage(double width,double height){
+    public void setImage(double width, double height) {
         setFitHeight(height);
         setFitWidth(width);
     }
 
     public void render(GraphicsContext context) {
         context.save();
-//        context.rotate(0);
-
-//        ColorAdjust doodool = new ColorAdjust();
-//        doodool.setSaturation(-1);
-//        context.setEffect(doodool);
         context.translate(rectangle.getX(), rectangle.getY());
         context.translate(-this.image.getWidth() / 2, -this.image.getHeight() / 2);
-        context.drawImage(this.image, 0, 0,this.image.getWidth(),this.image.getHeight());
+        context.drawImage(this.image, 0, 0, this.image.getWidth(), this.image.getHeight());
         context.restore();
     }
 
@@ -100,19 +95,17 @@ public class Sprite extends ImageView {
         if (rectangle.getX() < 0) rectangle.setX(0);
     }
 
-    public void mirrorMove(){
-        if (rectangle.getX() >= 1000 && this.vX > 0){
-            this.vX = - this.vX;
-        }
-        else if (rectangle.getX() < 0 && this.vX < 0){
-            this.vX = - this.vX;
+    public void mirrorMove() {
+        if (rectangle.getX() >= 1000 && this.vX > 0) {
+            this.vX = -this.vX;
+        } else if (rectangle.getX() < 0 && this.vX < 0) {
+            this.vX = -this.vX;
         }
 
-        if (rectangle.getY() >= 800 && this.vY > 0){
-            this.vY = - this.vY;
-        }
-        else if (rectangle.getY() < 0 && this.vY < 0){
-            this.vY = - this.vY;
+        if (rectangle.getY() >= 800 && this.vY > 0) {
+            this.vY = -this.vY;
+        } else if (rectangle.getY() < 0 && this.vY < 0) {
+            this.vY = -this.vY;
         }
     }
 }

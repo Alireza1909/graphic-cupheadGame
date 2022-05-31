@@ -9,7 +9,6 @@ public class CupHeadPlane extends Rectangle {
     private double damageRate;
     private double destructionRate;
     private Sprite sprite;
-    private boolean isBlinking;
     private int score;
 
     public CupHeadPlane(int x, int y, int vX, int vY, int level) {
@@ -32,13 +31,7 @@ public class CupHeadPlane extends Rectangle {
                 break;
         }
         sprite = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\mugman_plane_idle_straight_0001.png", 300, 200);
-        //setWidth(50);setHeight(30);
         sprite.setCoordinate(this);
-    }
-
-    public void changePosition(int dx, int dy) {
-        this.setX(getX() + dx);
-        this.setY(getY() + dy);
     }
 
     public Sprite getSprite() {
@@ -66,12 +59,12 @@ public class CupHeadPlane extends Rectangle {
     }
 
     public boolean intersects(Rectangle rectangle) {
-        if (getX() - getWidth()/2 > rectangle.getX() + rectangle.getWidth() / 2
+        if (getX() - getWidth() / 2 > rectangle.getX() + rectangle.getWidth() / 2
                 || getX() + getWidth() / 2 < rectangle.getX() - rectangle.getWidth() / 2) {
             return false;
         }
         if (getY() - getHeight() / 2 > rectangle.getY() + rectangle.getHeight() / 2
-                || getY() + getHeight()/2 < rectangle.getY() - rectangle.getHeight() / 2) {
+                || getY() + getHeight() / 2 < rectangle.getY() - rectangle.getHeight() / 2) {
             return false;
         }
         return true;

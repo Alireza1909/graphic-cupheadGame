@@ -21,15 +21,15 @@ public class SignupController {
     public SignUpMenuController signUpMenuController = new SignUpMenuController();
 
     public void typeUsername(KeyEvent keyEvent) {
-        username =(TextField) keyEvent.getSource();
+        username = (TextField) keyEvent.getSource();
     }
 
     public void typePassword(KeyEvent keyEvent) {
-        password =(TextField) keyEvent.getSource();
+        password = (TextField) keyEvent.getSource();
     }
 
     public void checkPassword(KeyEvent keyEvent) {
-        checkPassword =(TextField) keyEvent.getSource();
+        checkPassword = (TextField) keyEvent.getSource();
     }
 
     public void signup(MouseEvent mouseEvent) throws IOException {
@@ -37,22 +37,19 @@ public class SignupController {
             System.out.println(username.getText());
             boolean result = signUpMenuController.isUsernameRepeated(username.getText());
             System.out.println(result);
-            if (result){
+            if (result) {
                 SignupMenu.setErrorMessage("there is already a User with this username");
                 SignupMenu.showError();
-            }
-            else{
+            } else {
                 System.out.println("yep");
-                signUpMenuController.createUser(username.getText(),password.getText());
+                signUpMenuController.createUser(username.getText(), password.getText());
                 System.out.println(User.users.size());
                 LoginMenu.showLoginMenu();
             }
-        }
-        else {
+        } else {
             SignupMenu.setErrorMessage("passwords are not identical");
             SignupMenu.showError();
         }
-//        Game game = new Game(1, Main.stage);
     }
 
     public void BackToLoginMenu(MouseEvent mouseEvent) {

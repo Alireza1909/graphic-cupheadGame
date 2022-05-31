@@ -8,7 +8,6 @@ public class LoginMenuController {
         for (User user : User.users) {
             if (user.getUsername().equals(currentUsername)
                     && user.getPassword().equals(currentPassword)) return user;
-            //System.out.println("user = "+user.getUsername()+"  , "+user.getPassword());
         }
         return null;
     }

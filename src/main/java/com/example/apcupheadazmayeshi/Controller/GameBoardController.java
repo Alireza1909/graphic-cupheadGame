@@ -23,7 +23,6 @@ public class GameBoardController {
 
 
     public void updateBullets() {
-        //TODO colition
         for (int i = 0; i < gameBoard.getBullets().size(); i++) {
             if (gameBoard.getBullets().get(i).intersects(gameBoard.getBoss())) {
                 gameBoard.removeBulletByIndex(i);
@@ -50,7 +49,6 @@ public class GameBoardController {
     }
 
     public void updateBombs() {
-        //TODO colition
         for (int i = 0; i < gameBoard.getBombs().size(); i++) {
             //intersect boss and miniboss
             if (gameBoard.getBombs().get(i).intersects(gameBoard.getBoss())) {
@@ -115,9 +113,6 @@ public class GameBoardController {
         }
         return answer;
     }
-//    public void overlapChecking() {
-//        for
-//    }
 
     public void addEgg() {
         BirdBullet birdBullet = new BirdBullet(gameBoard.getBoss().getX(), gameBoard.getBoss().getY());

@@ -38,7 +38,7 @@ public class MiniBoss extends Rectangle {
     }
 
     public void reduceHP() {
-        this.HP --;
+        this.HP--;
     }
 
     public double getHP() {

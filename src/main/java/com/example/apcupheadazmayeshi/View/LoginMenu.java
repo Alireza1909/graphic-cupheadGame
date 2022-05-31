@@ -13,7 +13,7 @@ import com.example.apcupheadazmayeshi.Main;
 import java.io.IOException;
 import java.net.URL;
 
-public class LoginMenu{
+public class LoginMenu {
 
     public static Scene loginPage;
     public static Scene invalidLogin;
@@ -27,6 +27,7 @@ public class LoginMenu{
     }
 
     public static void showVictory(int score) {
+        Main.mediaPlayer.play();
         Main.stage.setScene(victory);
         LoginController.score = score;
         Main.stage.show();
@@ -38,12 +39,13 @@ public class LoginMenu{
     }
 
     public static void showLose(double progress) {
+        Main.mediaPlayer.play();
         Main.stage.setScene(loss);
         LoginController.progres = progress;
         Main.stage.show();
     }
 
-    public void start(Stage sth) throws IOException{
+    public void start(Stage sth) throws IOException {
         createAllScenes();
         Main.stage = sth;
         Main.stage.setTitle("Login Page");
@@ -51,7 +53,7 @@ public class LoginMenu{
         Main.stage.show();
     }
 
-    private static void createAllScenes() throws IOException{
+    private static void createAllScenes() throws IOException {
         loginPage = sceneCreator("fxml/Login-view.fxml");
         invalidLogin = sceneCreator("fxml/InvalidLogin-view.fxml");
         chooseGameLevel = sceneCreator("fxml/gameLevel.fxml");
@@ -59,9 +61,9 @@ public class LoginMenu{
         loss = sceneCreator("fxml/defeat-view.fxml");
     }
 
-    public static Scene sceneCreator(String resource) throws IOException{
+    public static Scene sceneCreator(String resource) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resource));
-        Scene scene = new Scene(fxmlLoader.load(),1200,800);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         setSize(scene);
         return scene;
     }
@@ -73,7 +75,7 @@ public class LoginMenu{
     }
 
 
-    public static void showInvalidLogin() throws IOException{
+    public static void showInvalidLogin() throws IOException {
 
         Main.stage.setScene(invalidLogin);
         Main.stage.show();

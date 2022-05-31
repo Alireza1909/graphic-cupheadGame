@@ -92,12 +92,10 @@ public class LoginController {
     }
 
     public void setProgress(MouseEvent mouseEvent) {
-        //progress = new Text();
-        progress.setText("progress = " + progres*100 + "%");
+        progress.setText("progress = " + progres * 100 + "%");
     }
 
-    public void setScore(MouseEvent mouseEvent){
-        //scoreField = new Text();
-        scoreField.setText("score = "+score);
+    public void setScore(MouseEvent mouseEvent) {
+        scoreField.setText("score = " + score);
     }
 }

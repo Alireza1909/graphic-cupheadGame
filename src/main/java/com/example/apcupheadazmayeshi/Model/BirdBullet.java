@@ -3,12 +3,12 @@ package com.example.apcupheadazmayeshi.Model;
 import com.example.apcupheadazmayeshi.View.Sprite;
 import javafx.scene.shape.Rectangle;
 
-public class BirdBullet extends Rectangle{
+public class BirdBullet extends Rectangle {
 
     private Sprite sprite;
 
     public BirdBullet(double x, double y) {
-        super(x, y,60,40);
+        super(x, y, 60, 40);
         sprite = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\bird_bullet_0002.png", -300, 0);
         sprite.setCoordinate(this);
         sprite.setMoving(true);

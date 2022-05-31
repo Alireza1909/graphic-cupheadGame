@@ -12,7 +12,6 @@ import java.io.IOException;
 public class SignupMenu {
     public static Scene invalidSignup;
     private static Scene signup;
-//    public static Stage stage;
     private static String errorMessage;
 
     public void start(Stage stage1) throws IOException {
@@ -27,7 +26,7 @@ public class SignupMenu {
 
     public static Scene sceneCreator(String resource) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resource));
-        Scene scene = new Scene(fxmlLoader.load(),1200,800);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         setSize(scene);
         return scene;
     }
@@ -44,7 +43,7 @@ public class SignupMenu {
         Main.stage.show();
     }
 
-    public static void showError(){
+    public static void showError() {
         Main.stage.setScene(invalidSignup);
         Main.stage.show();
     }

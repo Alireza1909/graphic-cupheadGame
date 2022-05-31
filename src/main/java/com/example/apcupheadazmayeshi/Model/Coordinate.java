@@ -10,7 +10,7 @@ abstract public class Coordinate {
     protected Sprite sprite;
     protected boolean isMoving;
 
-    public Coordinate(double x,double y,double vX,double vY){
+    public Coordinate(double x, double y, double vX, double vY) {
         this.x = x;
         this.y = y;
         this.vX = vX;
@@ -18,28 +18,30 @@ abstract public class Coordinate {
         this.isMoving = false;
     }
 
-    public void setMoving(boolean isMoving){
+    public void setMoving(boolean isMoving) {
         this.isMoving = isMoving;
     }
 
 
-    public double getX(){
+    public double getX() {
         return x;
     }
-    public double getY(){
+
+    public double getY() {
         return y;
     }
-    public Sprite getSprite(){
+
+    public Sprite getSprite() {
         return this.sprite;
     }
 
-    public void changeCoordinate(double dx,double dy){
+    public void changeCoordinate(double dx, double dy) {
         this.x += dx;
         this.y += dy;
     }
 
-    public void update(){
-        if (isMoving) changeCoordinate(vX,vY);
+    public void update() {
+        if (isMoving) changeCoordinate(vX, vY);
     }
 
 }

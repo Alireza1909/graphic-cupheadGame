@@ -9,7 +9,7 @@ public class User {
     public static User loggedInUser;
 
 
-    public User(String username,String password){
+    public User(String username, String password) {
         this.password = password;
         this.username = username;
     }

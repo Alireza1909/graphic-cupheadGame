@@ -29,27 +29,6 @@ public class Game {
     public static ArrayList<String> keys;
     private GameBoard gameBoard;
 
-//    final Rectangle rect = new Rectangle(1000,800);
-//
-//    final double rectangleSpeed = 100 ; // pixels per second
-//    final double minX = 0 ;
-//    final double maxX = 1000 ; // whatever the max value should be.. can use a property and bind to scene width if needed...
-//    final DoubleProperty rectangleVelocity = new SimpleDoubleProperty();
-//    final LongProperty lastUpdateTime = new SimpleLongProperty();
-//    final AnimationTimer rectangleAnimation = new AnimationTimer() {
-//        @Override
-//        public void handle(long timestamp) {
-//            if (lastUpdateTime.get() > 0) {
-//                final double elapsedSeconds = (timestamp - lastUpdateTime.get()) / 1_000_000_000.0 ;
-//                final double deltaX = elapsedSeconds * rectangleVelocity.get();
-//                final double oldX = rect.getTranslateX();
-//                final double newX = Math.max(minX, Math.min(maxX, oldX + deltaX));
-//                rect.setTranslateX(newX);
-//            }
-//            lastUpdateTime.set(timestamp);
-//        }
-//    };
-
     public Game(int level) throws IOException {
         gameBoard = new GameBoard(level);
         keys = new ArrayList<>();
@@ -61,20 +40,16 @@ public class Game {
     }
 
     public void run() throws IOException {
-//        Main.mediaPlayer.stop();
         Main.mediaPlayer.pause();
         System.out.println(111);
         Pane root = new Pane();
         Scene scene = new Scene(root);
-        //Main.stage.setScene(scene);
         Main.stage.close();
         Main.stage = new Stage();
         Main.stage.setScene(scene);
         Canvas canvas = new Canvas(1000, 800);
         GraphicsContext context = canvas.getGraphicsContext2D();
-        //root.setCenter(canvas);
         root.getChildren().add(canvas);
-//        handleKey(scene);
         GameBoardController gameBoardController = new GameBoardController(gameBoard);
 
 
@@ -121,10 +96,6 @@ public class Game {
         URL bombAudioAddress = new URL(Main.class.getResource("Audio/Bomb.mp3").toString());
         Media bombMedia = new Media(bombAudioAddress.toString());
 
-
-//        URL bombAudioAddress = new URL(Main.class.getResource("Audio/Bomb.mp3").toString());
-//        Media media = new Media(address.toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
 
         URL bulletAudioAddress = new URL(Main.class.getResource("Audio/Bullet.mp3").toString());
         Media bulletMedia = new Media(bulletAudioAddress.toString());
@@ -232,7 +203,6 @@ public class Game {
                     backGround = new Sprite("C:\\Users\\Asus\\IdeaProjects\\APCUPHEADAzmayeshi\\src\\main\\resources\\com\\example\\apcupheadazmayeshi\\Pictures\\amir.gif");
                     backGround.setCoordinate(rectangle);
                 }
-                //context.setEffect(colorAdjust);
                 gameBoardController.updateBullets();
                 gameBoardController.updateBombs();
                 gameBoardController.updateBoss();
@@ -251,7 +221,6 @@ public class Game {
                     playersHP.getStyleClass().add("playersHPRed");
                     isHPLessThan2 = true;
                 }
-                //gameBoardController.overlapChecking();
                 //display and update bombs and bullets
                 backGround.render(context);
                 for (Bullet bullet : gameBoard.getBullets()) {
@@ -325,17 +294,12 @@ public class Game {
                     else
                         LoginMenu.showVictory(gameBoard.getCupHead().getXP());
                 }
-                //System.gc();
             }
         };
 
         animationTimer.start();
 
         Main.stage.show();
-        System.out.println("salam");
-//        while (!isGameFinished[0]){
-//
-//        }
     }
 
     public void handleKey(Scene scene) {
